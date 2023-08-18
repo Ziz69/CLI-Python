@@ -60,3 +60,4 @@ contato: zizcoder@gmail.com
 """
 
 criar_arquivo('hello.txt',conteudo)
+criar_arquivo('main.py','print("Hello World!")')
