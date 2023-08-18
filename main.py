@@ -2,6 +2,7 @@
 import sys
 import argparse
 import os
+import virtualenv
 
 #recebendo comando do cmd
 command = sys.argv[1:]
@@ -16,6 +17,7 @@ parser.add_argument("-t","--title",dest="title", type=str, help="Título da Past
 parser.add_argument("-output",dest="output",type=str,help="Onde o projeto será salvo, por padrão é colocado no Disco C", default="C:/")
 parser.add_argument('-h', '--help', action='help', default=argparse.SUPPRESS,
                     help='Mostra essa mensagem e sai do programa.')
+
 
 #acessando argumentos
 args = parser.parse_args()
@@ -33,4 +35,28 @@ print("Projeto criado no endereço: ",final_dir)
 if not os.path.exists(final_dir):
     os.mkdir(final_dir)
 else:
-    os.mkdir(f"{final_dir}01")
+    print("Pasta já existente no caminho especificado.")
+
+
+# criando arquivo template
+def criar_arquivo(nome_arquivo, conteudo):
+    os.chdir(final_dir)
+    if not os.path.exists(nome_arquivo):
+        with open(nome_arquivo, "w") as arquivo:
+            arquivo.write(conteudo)
+
+conteudo = """
+Olá! Tenho 21 anos e sou um aspirante a programador apaixonado por tecnologia.
+Estudo na UFMA, onde mergulho no mundo da programação.
+Minhas habilidades incluem Python, HTML, CSS e estou começando com JavaScript.
+Adoro transformar ideias em soluções digitais criativas.
+Fico feliz que um de meus códigos foi útil para você!
+
+Atenciosamente,
+Ziz
+contato: zizcoder@gmail.com
+
+
+"""
+
+criar_arquivo('hello.txt',conteudo)
